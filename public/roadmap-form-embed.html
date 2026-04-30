@@ -191,7 +191,8 @@
       partner
     });
 
-    window.top.location.href = '/roadmap-results.html?' + params.toString();
+    // Full absolute URL required — this runs inside an iframe on the GHL page
+    window.top.location.href = 'https://csa-roadmap-app.vercel.app/roadmap-results.html?' + params.toString();
   });
 </script>
 </body>
