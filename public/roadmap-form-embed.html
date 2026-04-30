@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Your Roadmap</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: transparent;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 22px 20px;
+    width: 100%;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.10);
+  }
+
+  .tagline {
+    font-size: 11.5px;
+    color: #888;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .field { margin-bottom: 10px; }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid #dde1e7;
+    border-radius: 7px;
+    font-size: 13.5px;
+    color: #1c2b3a;
+    background: #f7f8fa;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.18s, background 0.18s;
+    resize: none;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: #0b8927;
+    background: #fff;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder { color: #b0b8c4; font-size: 13px; }
+
+  .stage-label {
+    font-size: 11.5px;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 7px;
+  }
+
+  .stage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 7px;
+    margin-bottom: 10px;
+  }
+
+  .stage-opt {
+    border: 1.5px solid #dde1e7;
+    border-radius: 7px;
+    padding: 10px 5px 8px;
+    text-align: center;
+    cursor: pointer;
+    background: #f7f8fa;
+    transition: all 0.18s;
+    user-select: none;
+  }
+
+  .stage-opt .icon { display: block; font-size: 18px; margin-bottom: 3px; }
+  .stage-opt .lbl  { display: block; font-size: 10.5px; color: #666; line-height: 1.3; }
+
+  .stage-opt:hover { border-color: #0b8927; background: #f0faf3; }
+  .stage-opt.active { border-color: #0b8927; background: #e8f5eb; }
+  .stage-opt.active .lbl { color: #0b8927; font-weight: 700; }
+
+  .error-msg {
+    font-size: 11px; color: #c0392b;
+    margin-top: -6px; margin-bottom: 8px;
+    display: none;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #0b8927;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.18s;
+    margin-top: 2px;
+  }
+
+  .submit-btn:hover { background: #097a22; }
+  .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+  .privacy {
+    font-size: 10.5px;
+    color: #b0b8c4;
+    text-align: center;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <p class="tagline">No pressure. No commitment. Just a clear, personal next step.</p>
+
+  <form id="roadmapForm">
+    <div class="field">
+      <input type="text" id="firstName" placeholder="Your first name" required />
+    </div>
+    <div class="field">
+      <input type="text" id="bizName" placeholder="Business name (or idea name)" />
+    </div>
+    <div class="field">
+      <input type="email" id="email" placeholder="Email address" required />
+    </div>
+    <div class="field">
+      <textarea id="bizDesc" rows="2" placeholder="What does your business do? (brief is fine)" required></textarea>
+    </div>
+
+    <div class="stage-label">How established are you?</div>
+    <div class="stage-grid">
+      <div class="stage-opt" data-value="just-starting" onclick="selectStage(this)">
+        <span class="icon">🌱</span>
+        <span class="lbl">Just starting out</span>
+      </div>
+      <div class="stage-opt" data-value="getting-traction" onclick="selectStage(this)">
+        <span class="icon">📈</span>
+        <span class="lbl">Getting traction 1–3 yrs</span>
+      </div>
+      <div class="stage-opt" data-value="established" onclick="selectStage(this)">
+        <span class="icon">🌳</span>
+        <span class="lbl">Established 3+ years</span>
+      </div>
+    </div>
+    <p class="error-msg" id="stageError">Please select your business stage.</p>
+
+    <input type="hidden" id="selectedStage" value="" />
+
+    <button type="submit" class="submit-btn" id="submitBtn">Get My Free Roadmap →</button>
+  </form>
+
+  <p class="privacy">Used only to build your roadmap — nothing else.</p>
+</div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const partner = urlParams.get('partner') || '';
+
+  function selectStage(el) {
+    document.querySelectorAll('.stage-opt').forEach(o => o.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('selectedStage').value = el.dataset.value;
+    document.getElementById('stageError').style.display = 'none';
+  }
+
+  document.getElementById('roadmapForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const stage = document.getElementById('selectedStage').value;
+    if (!stage) {
+      document.getElementById('stageError').style.display = 'block';
+      return;
+    }
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Building your roadmap…';
+    btn.disabled = true;
+
+    const params = new URLSearchParams({
+      firstName: document.getElementById('firstName').value.trim(),
+      bizName:   document.getElementById('bizName').value.trim(),
+      email:     document.getElementById('email').value.trim(),
+      bizDesc:   document.getElementById('bizDesc').value.trim(),
+      stage,
+      partner
+    });
+
+    window.top.location.href = '/roadmap-results.html?' + params.toString();
+  });
+</script>
+</body>
+</html>
