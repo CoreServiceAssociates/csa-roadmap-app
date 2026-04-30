@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Your Free Business Roadmap | CoreService Associates</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green:        #0b8927;
+    --green-light:  #f0faf3;
+    --green-mid:    #097a22;
+    --green-border: #c3e6cc;
+    --navy:         #003366;
+    --text:         #1c2b3a;
+    --muted:        #6b7a8d;
+    --border:       #e2e6ea;
+    --bg:           #f7f8fa;
+    --white:        #ffffff;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo-mark {
+    height: 42px; width: 42px;
+    border-radius: 50%;
+    border: 1.5px solid var(--green-border);
+    background: var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 900; color: var(--green);
+    flex-shrink: 0; letter-spacing: -0.5px;
+  }
+
+  .header-text .org  { font-size: 14px; font-weight: 700; color: var(--navy); }
+  .header-text .tag  { font-size: 11.5px; color: var(--muted); }
+
+  /* Layout */
+  .page {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 52px 24px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 52px;
+    align-items: start;
+  }
+
+  /* Left: value prop */
+  .value-side { padding-top: 6px; }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--green-light);
+    border: 1px solid var(--green-border);
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .value-side h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+
+  .value-side .lead {
+    font-size: 15.5px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 34px;
+  }
+
+  .how-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 34px;
+  }
+
+  .how-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .how-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--green-light);
+    border: 1.5px solid var(--green-border);
+    color: var(--green);
+    font-size: 11.5px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .how-text strong {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .how-text span {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .trust-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .trust-box .icon { font-size: 26px; flex-shrink: 0; line-height: 1; }
+
+  .trust-box p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .trust-box strong {
+    font-style: normal;
+    color: var(--text);
+    font-size: 12px;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* Right: form card */
+  .form-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 34px 32px 28px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  }
+
+  .form-head { margin-bottom: 24px; }
+
+  .form-head h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .form-head p { font-size: 13.5px; color: var(--muted); }
+
+  .field { margin-bottom: 13px; }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    resize: none;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--green);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(11,137,39,0.07);
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder { color: #b0b8c4; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stage-label {
+    font-size: 12px; font-weight: 600;
+    color: var(--text); margin-bottom: 8px;
+  }
+
+  .stage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .stage-opt {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 6px 10px;
+    text-align: center;
+    cursor: pointer;
+    background: var(--bg);
+    transition: all 0.18s;
+    user-select: none;
+  }
+
+  .stage-opt .icon { display: block; font-size: 20px; margin-bottom: 4px; }
+
+  .stage-opt .lbl {
+    display: block;
+    font-size: 11px;
+    color: #666;
+    line-height: 1.35;
+    font-weight: 500;
+  }
+
+  .stage-opt:hover { border-color: var(--green); background: var(--green-light); }
+  .stage-opt.active { border-color: var(--green); background: var(--green-light); }
+  .stage-opt.active .lbl { color: var(--green); font-weight: 700; }
+
+  .error-msg {
+    font-size: 11.5px; color: #c0392b;
+    margin-top: -8px; margin-bottom: 10px;
+    display: none;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.18s, box-shadow 0.18s;
+    margin-top: 4px;
+  }
+
+  .submit-btn:hover {
+    background: var(--green-mid);
+    box-shadow: 0 4px 14px rgba(11,137,39,0.2);
+  }
+
+  .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+  .privacy-note {
+    font-size: 11.5px; color: #b0b8c4;
+    text-align: center; margin-top: 12px;
+  }
+
+  @media (max-width: 760px) {
+    .page { grid-template-columns: 1fr; padding: 30px 18px 60px; gap: 28px; }
+    .value-side h1 { font-size: 24px; }
+    .form-card { padding: 26px 18px 22px; }
+    .two-col { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-mark">CS</div>
+  <div class="header-text">
+    <div class="org">CoreService Associates</div>
+    <div class="tag">A Team Behind Your Business</div>
+  </div>
+</header>
+
+<div class="page">
+
+  <div class="value-side">
+    <span class="eyebrow">Free · No Commitment</span>
+    <h1>Let's figure out your next right move — together.</h1>
+    <p class="lead">Tell me a little about where you are right now. I'll put together 3 specific action steps you can take on your own, plus a clear path to getting real support when you're ready.</p>
+
+    <div class="how-steps">
+      <div class="how-row">
+        <div class="how-num">01</div>
+        <div class="how-text">
+          <strong>Tell me about your business</strong>
+          <span>Share where you are and what's feeling hardest — takes about 60 seconds.</span>
+        </div>
+      </div>
+      <div class="how-row">
+        <div class="how-num">02</div>
+        <div class="how-text">
+          <strong>Get 3 actions you can take today</strong>
+          <span>Your roadmap arrives instantly — built around your actual stage and goals, not a generic checklist.</span>
+        </div>
+      </div>
+      <div class="how-row">
+        <div class="how-num">03</div>
+        <div class="how-text">
+          <strong>Connect when you're ready</strong>
+          <span>Your final step is a free check-in with a local consultant who already knows your market.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-box">
+      <div class="icon">💚</div>
+      <div>
+        <p>"Every roadmap is built around what's true for your business — real next steps you can actually take, from someone who's genuinely invested in your community."</p>
+        <strong>— CoreService Associates</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <div class="form-head">
+      <h2>Build My Roadmap</h2>
+      <p>A few quick questions — your roadmap is ready the moment you hit submit.</p>
+    </div>
+
+    <form id="roadmapForm">
+      <div class="two-col">
+        <div class="field">
+          <label>First Name</label>
+          <input type="text" id="firstName" placeholder="e.g. Maria" autocomplete="given-name" required />
+        </div>
+        <div class="field">
+          <label>Business Name</label>
+          <input type="text" id="bizName" placeholder="Or your idea name" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="you@yourbusiness.com" autocomplete="email" required />
+      </div>
+
+      <div class="field">
+        <label>What does your business do?</label>
+        <textarea id="bizDesc" rows="3" placeholder="Brief is perfect — e.g. 'I run a mobile pet grooming service in Atlanta' or 'I'm starting a catering idea and haven't launched yet'" required></textarea>
+      </div>
+
+      <div class="field">
+        <label>What feels hardest right now?</label>
+        <input type="text" id="challenge" placeholder="e.g. finding customers, staying organized, getting visible online…" />
+      </div>
+
+      <div class="stage-label">How established is your business?</div>
+      <div class="stage-grid">
+        <div class="stage-opt" data-value="just-starting" onclick="selectStage(this)">
+          <span class="icon">🌱</span>
+          <span class="lbl">Just starting<br><span style="font-size:10px;color:#aaa;font-weight:400;">Under 1 year</span></span>
+        </div>
+        <div class="stage-opt" data-value="getting-traction" onclick="selectStage(this)">
+          <span class="icon">📈</span>
+          <span class="lbl">Getting traction<br><span style="font-size:10px;color:#aaa;font-weight:400;">1–3 years</span></span>
+        </div>
+        <div class="stage-opt" data-value="established" onclick="selectStage(this)">
+          <span class="icon">🌳</span>
+          <span class="lbl">Established<br><span style="font-size:10px;color:#aaa;font-weight:400;">3+ years</span></span>
+        </div>
+      </div>
+      <p class="error-msg" id="stageError">Please select your business stage to continue.</p>
+
+      <input type="hidden" id="selectedStage" value="" />
+
+      <button type="submit" class="submit-btn" id="submitBtn">Get My Free Roadmap →</button>
+    </form>
+
+    <p class="privacy-note">We use this only to build your roadmap. No spam, ever.</p>
+  </div>
+
+</div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const partner = urlParams.get('partner') || '';
+
+  function selectStage(el) {
+    document.querySelectorAll('.stage-opt').forEach(o => o.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('selectedStage').value = el.dataset.value;
+    document.getElementById('stageError').style.display = 'none';
+  }
+
+  document.getElementById('roadmapForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const stage = document.getElementById('selectedStage').value;
+    if (!stage) {
+      document.getElementById('stageError').style.display = 'block';
+      document.querySelector('.stage-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Building your roadmap…';
+    btn.disabled = true;
+
+    const p = new URLSearchParams({
+      firstName: document.getElementById('firstName').value.trim(),
+      bizName:   document.getElementById('bizName').value.trim(),
+      email:     document.getElementById('email').value.trim(),
+      bizDesc:   document.getElementById('bizDesc').value.trim(),
+      challenge: document.getElementById('challenge').value.trim(),
+      stage,
+      partner
+    });
+
+    window.location.href = '/roadmap-results.html?' + p.toString();
+  });
+</script>
+
+</body>
+</html>
