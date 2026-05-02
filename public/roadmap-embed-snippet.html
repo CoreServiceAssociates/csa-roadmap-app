@@ -1,0 +1,370 @@
+<div id="csa-roadmap-widget"></div>
+
+<style>
+  #csa-roadmap-widget {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    max-width: 560px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1.5px solid #e2e6ea;
+    border-radius: 14px;
+    padding: 32px 28px 24px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+  }
+
+  #csa-roadmap-widget *, #csa-roadmap-widget *::before, #csa-roadmap-widget *::after {
+    box-sizing: border-box;
+  }
+
+  #csa-roadmap-widget h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #003366;
+    margin: 0 0 4px;
+  }
+
+  #csa-roadmap-widget .csa-sub {
+    font-size: 13.5px;
+    color: #6b7a8d;
+    margin-bottom: 22px;
+  }
+
+  #csa-roadmap-widget .csa-field { margin-bottom: 12px; }
+
+  #csa-roadmap-widget .csa-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1c2b3a;
+    margin-bottom: 4px;
+  }
+
+  #csa-roadmap-widget .csa-field input,
+  #csa-roadmap-widget .csa-field textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid #e2e6ea;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #f7f8fa;
+    color: #1c2b3a;
+    outline: none;
+    transition: border-color 0.18s, background 0.18s;
+    resize: none;
+  }
+
+  #csa-roadmap-widget .csa-field input:focus,
+  #csa-roadmap-widget .csa-field textarea:focus {
+    border-color: #0b8927;
+    background: #fff;
+  }
+
+  #csa-roadmap-widget .csa-field input::placeholder,
+  #csa-roadmap-widget .csa-field textarea::placeholder {
+    color: #b0b8c4;
+  }
+
+  #csa-roadmap-widget .csa-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  #csa-roadmap-widget .csa-stage-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1c2b3a;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  #csa-roadmap-widget .csa-stage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  #csa-roadmap-widget .csa-stage-opt {
+    border: 1.5px solid #e2e6ea;
+    border-radius: 8px;
+    padding: 10px 4px;
+    text-align: center;
+    cursor: pointer;
+    background: #f7f8fa;
+    transition: all 0.18s;
+    user-select: none;
+  }
+
+  #csa-roadmap-widget .csa-stage-opt:hover {
+    border-color: #0b8927;
+    background: #f0faf3;
+  }
+
+  #csa-roadmap-widget .csa-stage-opt.active {
+    border-color: #0b8927;
+    background: #f0faf3;
+  }
+
+  #csa-roadmap-widget .csa-stage-opt .csa-icon {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 3px;
+  }
+
+  #csa-roadmap-widget .csa-stage-opt .csa-lbl {
+    display: block;
+    font-size: 11px;
+    color: #666;
+    line-height: 1.35;
+    font-weight: 500;
+  }
+
+  #csa-roadmap-widget .csa-stage-opt.active .csa-lbl {
+    color: #0b8927;
+    font-weight: 700;
+  }
+
+  #csa-roadmap-widget .csa-error {
+    font-size: 11.5px;
+    color: #c0392b;
+    margin: -8px 0 10px;
+    display: none;
+  }
+
+  #csa-roadmap-widget .csa-submit-btn {
+    width: 100%;
+    padding: 13px;
+    background: #0b8927;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 4px;
+    transition: background 0.18s, box-shadow 0.18s;
+  }
+
+  #csa-roadmap-widget .csa-submit-btn:hover {
+    background: #097a22;
+    box-shadow: 0 4px 14px rgba(11,137,39,0.2);
+  }
+
+  #csa-roadmap-widget .csa-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  #csa-roadmap-widget .csa-privacy {
+    font-size: 11.5px;
+    color: #b0b8c4;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  #csa-debug-panel {
+    background: #1e1e1e;
+    color: #00ff88;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    display: none;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 600px) {
+    #csa-roadmap-widget {
+      padding: 24px 16px 18px;
+    }
+    #csa-roadmap-widget .csa-two-col {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+</style>
+
+<script>
+(function () {
+
+  // ── Read URL params ─────────────────────────────────────────
+  var urlParams = new URLSearchParams(window.location.search);
+  var am_id     = urlParams.get('am_id') || '';
+  var debugMode = urlParams.get('debug') === 'true';
+
+  // ── Debug helper ────────────────────────────────────────────
+  function dbg(label, data) {
+    if (!debugMode) return;
+    console.log('[CSA debug]', label, data);
+    var panel = document.getElementById('csa-debug-panel');
+    if (panel) {
+      panel.style.display = 'block';
+      panel.textContent += '\n[' + label + ']\n' + JSON.stringify(data, null, 2) + '\n';
+    }
+  }
+
+  dbg('Page loaded', { am_id: am_id, url: window.location.href });
+
+  // ── Render widget HTML ──────────────────────────────────────
+  var widget = document.getElementById('csa-roadmap-widget');
+  widget.innerHTML = [
+    '<h2>Build My Free Roadmap</h2>',
+    '<p class="csa-sub">A few quick questions — your roadmap is ready the moment you hit submit.</p>',
+
+    '<div class="csa-two-col">',
+      '<div class="csa-field">',
+        '<label>First Name</label>',
+        '<input type="text" id="csa-firstName" placeholder="e.g. Maria" autocomplete="given-name" />',
+      '</div>',
+      '<div class="csa-field">',
+        '<label>Business Name</label>',
+        '<input type="text" id="csa-bizName" placeholder="Or your idea name" />',
+      '</div>',
+    '</div>',
+
+    '<div class="csa-two-col">',
+      '<div class="csa-field">',
+        '<label>Email Address</label>',
+        '<input type="email" id="csa-email" placeholder="you@yourbusiness.com" autocomplete="email" />',
+      '</div>',
+      '<div class="csa-field">',
+        '<label>Phone Number</label>',
+        '<input type="tel" id="csa-phone" placeholder="e.g. (555) 867-5309" autocomplete="tel" />',
+      '</div>',
+    '</div>',
+
+    '<div class="csa-field">',
+      '<label>What does your business do?</label>',
+      '<textarea id="csa-bizDesc" rows="3" placeholder="e.g. \'I run a mobile pet grooming service in Atlanta\' or \'I\'m starting a catering idea and haven\'t launched yet\'"></textarea>',
+    '</div>',
+
+    '<div class="csa-field">',
+      '<label>What feels hardest right now?</label>',
+      '<input type="text" id="csa-challenge" placeholder="e.g. finding customers, staying organized, getting visible online…" />',
+    '</div>',
+
+    '<span class="csa-stage-label">How established is your business?</span>',
+    '<div class="csa-stage-grid">',
+      '<div class="csa-stage-opt" data-value="just-starting" onclick="csaSelectStage(this)">',
+        '<span class="csa-icon">🌱</span>',
+        '<span class="csa-lbl">Just starting<br><span style="font-size:10px;color:#aaa;font-weight:400;">Under 1 year</span></span>',
+      '</div>',
+      '<div class="csa-stage-opt" data-value="getting-traction" onclick="csaSelectStage(this)">',
+        '<span class="csa-icon">📈</span>',
+        '<span class="csa-lbl">Getting traction<br><span style="font-size:10px;color:#aaa;font-weight:400;">1–3 years</span></span>',
+      '</div>',
+      '<div class="csa-stage-opt" data-value="established" onclick="csaSelectStage(this)">',
+        '<span class="csa-icon">🌳</span>',
+        '<span class="csa-lbl">Established<br><span style="font-size:10px;color:#aaa;font-weight:400;">3+ years</span></span>',
+      '</div>',
+    '</div>',
+    '<p class="csa-error" id="csa-stageError">Please select your business stage to continue.</p>',
+
+    '<button class="csa-submit-btn" id="csa-submitBtn" onclick="csaSubmit()">Get My Free Roadmap →</button>',
+    '<p class="csa-privacy">We use this only to build your roadmap. No spam, ever.</p>'
+  ].join('');
+
+  // Append debug panel after widget
+  var debugPanel = document.createElement('div');
+  debugPanel.id = 'csa-debug-panel';
+  widget.parentNode.insertBefore(debugPanel, widget.nextSibling);
+
+  // ── Stage selector ──────────────────────────────────────────
+  window.csaSelectStage = function (el) {
+    var opts = document.querySelectorAll('#csa-roadmap-widget .csa-stage-opt');
+    for (var i = 0; i < opts.length; i++) opts[i].classList.remove('active');
+    el.classList.add('active');
+    document.getElementById('csa-stageError').style.display = 'none';
+    dbg('Stage selected', { value: el.dataset.value });
+  };
+
+  // ── Submit ──────────────────────────────────────────────────
+  window.csaSubmit = async function () {
+    var activeStage = document.querySelector('#csa-roadmap-widget .csa-stage-opt.active');
+    var stage = activeStage ? activeStage.dataset.value : '';
+
+    if (!stage) {
+      document.getElementById('csa-stageError').style.display = 'block';
+      document.querySelector('#csa-roadmap-widget .csa-stage-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    var formData = {
+      am_id:     am_id,
+      firstName: document.getElementById('csa-firstName').value.trim(),
+      bizName:   document.getElementById('csa-bizName').value.trim(),
+      email:     document.getElementById('csa-email').value.trim(),
+      phone:     document.getElementById('csa-phone').value.trim(),
+      bizDesc:   document.getElementById('csa-bizDesc').value.trim(),
+      challenge: document.getElementById('csa-challenge').value.trim(),
+      stage:     stage,
+      debug:     debugMode
+    };
+
+    dbg('Form data collected', formData);
+
+    // Basic validation
+    if (!formData.firstName) { alert('Please enter your first name.'); return; }
+    if (!formData.email)     { alert('Please enter your email address.'); return; }
+    if (!formData.bizDesc)   { alert('Please describe your business.'); return; }
+
+    var btn = document.getElementById('csa-submitBtn');
+    btn.textContent = 'Building your roadmap…';
+    btn.disabled = true;
+
+    try {
+      dbg('Calling /api/submit', { am_id: am_id });
+
+      var res = await fetch('https://roadmap.coreserviceassociates.com/api/submit', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(formData)
+      });
+
+      var data = await res.json();
+      dbg('api/submit response', data);
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Submit failed');
+      }
+
+      // Build results page URL with all params
+      var p = new URLSearchParams({
+        am_id:       am_id,
+        firstName:   formData.firstName,
+        bizName:     formData.bizName,
+        email:       formData.email,
+        phone:       formData.phone,
+        bizDesc:     formData.bizDesc,
+        challenge:   formData.challenge,
+        stage:       stage,
+        partnerName: data.partner.name
+      });
+
+      if (debugMode) p.set('debug', 'true');
+
+      var resultsURL = 'https://roadmap.coreserviceassociates.com/roadmap-results.html?' + p.toString();
+      dbg('Redirecting to results', { resultsURL: resultsURL });
+
+      window.location.href = resultsURL;
+
+    } catch (err) {
+      dbg('Submit error', { message: err.message });
+      btn.textContent = 'Get My Free Roadmap →';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  };
+
+})();
+</script>
