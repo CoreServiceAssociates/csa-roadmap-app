@@ -25,9 +25,9 @@ export default async function handler(req, res) {
     log('Received submission', { am_id, firstName, email, phone });
 
     // ── 1. Validate required fields ─────────────────────────
-    if (!am_id)      return res.status(400).json({ error: 'Missing required field: am_id' });
-    if (!firstName)  return res.status(400).json({ error: 'Missing required field: firstName' });
-    if (!email)      return res.status(400).json({ error: 'Missing required field: email' });
+    if (!am_id)     return res.status(400).json({ error: 'Missing required field: am_id' });
+    if (!firstName) return res.status(400).json({ error: 'Missing required field: firstName' });
+    if (!email)     return res.status(400).json({ error: 'Missing required field: email' });
 
     // ── 2. Look up affiliate in Supabase ─────────────────────
     const supabaseUrl = process.env.SUPABASE_URL;
@@ -102,8 +102,6 @@ export default async function handler(req, res) {
       } catch (whErr) {
         webhookStatus = `error: ${whErr.message}`;
         log('Webhook threw:', whErr.message);
-        // Don't fail the whole request if webhook fails —
-        // contact data was still received, just log it
         console.error('[submit] Webhook error for am_id', am_id, whErr.message);
       }
     } else {
