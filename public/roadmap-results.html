@@ -255,25 +255,6 @@
     color: rgba(255,255,255,0.9);
   }
 
-  .cta-btn {
-    display: inline-block;
-    margin-top: 18px;
-    margin-left: 42px;
-    padding: 12px 24px;
-    background: #fff;
-    color: var(--green);
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.18s, transform 0.18s;
-  }
-
-  .cta-btn:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    transform: translateY(-1px);
-  }
-
   /* ── Error screen ─────────────────────────────────────────── */
   #error-screen {
     display: none;
@@ -399,9 +380,8 @@
   var bizDesc         = params.get('bizDesc')         || '';
   var challenge       = params.get('challenge')       || '';
   var stage           = params.get('stage')           || '';
-  var partnerName     = params.get('partnerName')     || 'CoreService Associates';
-  var partnerCalendar = params.get('partnerCalendar') || '#';
-  var debugMode       = params.get('debug')           === 'true';
+  var partnerName = params.get('partnerName') || 'CoreService Associates';
+  var debugMode   = params.get('debug')       === 'true';
 
   // ── Debug helpers ─────────────────────────────────────────
   function dbg(label, data) {
@@ -421,8 +401,7 @@
     bizDesc: bizDesc,
     challenge: challenge,
     stage: stage,
-    partnerName: partnerName,
-    partnerCalendar: partnerCalendar
+    partnerName: partnerName
   });
 
   // ── Loading messages ──────────────────────────────────────
@@ -506,11 +485,7 @@
         'You\u2019ve got your first three moves \u2014 and you don\u2019t have to figure out the rest alone. ' +
         escHtml(partnerName) + ' is a local CoreService partner who already knows your market. ' +
         'A free check-in takes 20 minutes and costs nothing. Come as you are.' +
-      '</p>' +
-      (partnerCalendar && partnerCalendar !== '#'
-        ? '<a class="cta-btn" href="' + escHtml(partnerCalendar) + '" target="_blank" rel="noopener">Book My Free Check-In \u2192</a>'
-        : '<a class="cta-btn" href="#" onclick="return false;" style="opacity:0.6;cursor:default;">Booking link coming soon</a>'
-      );
+      '</p>';
     list.appendChild(ctaCard);
 
     // Show results, hide loading
